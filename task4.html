@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Date and Time</title>
+    <style>
+      body {
+        background-image: url(images/bg.png);
+        background-size: cover;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        display: flex;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(14, 178, 14);
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        margin: 10px;
+        width: 200px;
+      }
+      button:hover {
+        background-color: rgb(21, 116, 21);
+      }
+      .output {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Date and Time</h2>
+      <div class="button-container">
+        <button onclick="showDate()">Show Date</button>
+        <p class="output" id="dateOutput"></p>
+      </div>
+      <div class="button-container">
+        <button onclick="showTime()">Show Time</button>
+        <p class="output" id="timeOutput"></p>
+      </div>
+    </div>
+
+    <script>
+      function showDate() {
+        let now = new Date();
+        let options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        let outputElement = document.getElementById("dateOutput");
+        outputElement.textContent = `Current Date: ${now.toLocaleDateString(
+          "en-US",
+          options
+        )}`;
+      }
+
+      function showTime() {
+        let now = new Date();
+        let dateOptions = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        let timeOptions = {
+          hour12: true,
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+        };
+
+        let dateOutputElement = document.getElementById("dateOutput");
+        let timeOutputElement = document.getElementById("timeOutput");
+
+        dateOutputElement.textContent = `Current Date: ${now.toLocaleDateString(
+          "en-US",
+          dateOptions
+        )}`;
+        timeOutputElement.textContent = `Current Time: ${now.toLocaleDateString(
+          "en-US",
+          dateOptions
+        )} at ${now.toLocaleTimeString("en-US", timeOptions)}`;
+      }
+    </script>
+  </body>
+</html>

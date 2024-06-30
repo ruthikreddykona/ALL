@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Js-task2</title>
+    <style>
+      body {
+        background-image: url(images/bg.png);
+        background-size: cover;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        display: flex;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+      }
+      input {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(14, 178, 14);
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: rgb(21, 116, 21);
+      }
+      p {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+      .error {
+        color: #ff4c4c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Alphabetize String</h1>
+      <input type="text" id="stringInput" placeholder="Enter a string" />
+      <button onclick="alphabetizeAndDisplayString()">Alphabetize</button>
+      <p id="output"></p>
+    </div>
+    <script>
+      function alphabetizeString(str) {
+        if (!/^[a-zA-Z]+$/.test(str)) {
+          return null;
+        }
+        let lowerStr = str.toLowerCase();
+        let charArray = lowerStr.split("");
+        charArray.sort();
+        let sortedStr = charArray.join("");
+        return sortedStr;
+      }
+      function alphabetizeAndDisplayString() {
+        let inputElement = document.getElementById("stringInput");
+        let outputElement = document.getElementById("output");
+        let originalString = inputElement.value.trim();
+
+        if (originalString === "") {
+          outputElement.textContent = "Please enter a string";
+          outputElement.classList.add("error");
+          return;
+        }
+        let sortedString = alphabetizeString(originalString);
+        if (sortedString === null) {
+          outputElement.textContent = "Only alphabetic characters are allowed";
+          outputElement.classList.add("error");
+        } else {
+          outputElement.classList.remove("error");
+          outputElement.textContent = Original String: "${originalString}", Alphabetized String: "${sortedString}";
+        }
+      }
+    </script>
+  </body>
+</html>
